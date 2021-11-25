@@ -13,7 +13,7 @@ const resetBt = document.querySelector('.reset');
 const calcTips = function(tipRatio) {
     let currentTipRatio = parseInt(tipRatio) / 100;
     if (!inputBill.value !== true && !peopleNum !== true) {
-        const tip = inputBill.value * currentTipRatio / Number(peopleNum.value)
+        const tip = Number(inputBill.value) * currentTipRatio / Number(peopleNum.value)
         const total = tip + inputBill.value / Number(peopleNum.value);
         tipValue.textContent = tip.toFixed(2);
         totalValue.textContent = total.toFixed(2);
@@ -31,7 +31,7 @@ document.querySelectorAll('.tip-box').forEach((tipBox => tipBox.addEventListener
         document.querySelector('.alert').classList.remove('hidden');
     } else {
         document.querySelector('.alert').classList.add('hidden');
-        calcTips(event.target.value);
+        calcTips(event.target.textContent);
     }
 })));
 

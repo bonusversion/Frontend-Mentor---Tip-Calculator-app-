@@ -1,0 +1,243 @@
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: hsl(185, 41%, 84%);
+    font-size: 24px;
+    color: hsl(183, 100%, 15%);
+}
+
+div {
+    box-sizing: border-box;
+}
+
+h1,
+h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1 {
+    width: 80px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    margin: 150px auto 80px;
+}
+
+.font14 {
+    font-size: 14px;
+    font-weight: 400;
+    color: hsl(186, 14%, 43%);
+}
+
+.container {
+    position: relative;
+    width: 920px;
+    height: 470px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.people {
+    position: relative;
+}
+
+.alert {
+    position: absolute;
+    top: 0;
+    left: 260px;
+    font-size: 14px;
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+.bill-box,
+.people-box {
+    width: 375px;
+    height: 45px;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    font-size: 20px;
+    color: hsl(185, 41%, 84%);
+    font-weight: 400;
+    line-height: 45px;
+    padding-left: 15px;
+    background-color: hsl(189, 41%, 97%);
+}
+
+.bill-title {
+    margin-bottom: 5px;
+}
+
+.bill-input,
+.people-input {
+    width: 320px;
+    border: none;
+    background-color: hsl(189, 41%, 97%);
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: hsl(183, 100%, 15%);
+    margin-left: 15px;
+    text-align: right;
+    outline: none;
+}
+
+input::placeholder {
+    color: hsl(185, 41%, 84%);
+    font-family: 'Space Mono', monospace;
+}
+
+.tip {
+    margin-top: 40px;
+    width: 400px;
+}
+
+.tip-box {
+    width: 115px;
+    height: 45px;
+    background-color: hsl(183, 100%, 15%);
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 45px;
+    border-radius: 5px;
+    float: left;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.tip-box:hover {
+    background-color: hsl(185, 41%, 84%);
+    color: hsl(183, 100%, 15%);
+}
+
+.tip-box-click {
+    background-color: hsl(172, 67%, 45%);
+    color: hsl(183, 100%, 15%);
+}
+
+.custom-tip-input {
+    display: block;
+    box-sizing: border-box;
+    width: 115px;
+    height: 45px;
+    background-color: hsl(185, 41%, 84%);
+    color: hsl(183, 100%, 15%);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 45px;
+    border: none;
+    border-radius: 5px;
+    float: left;
+    margin-top: 15px;
+    margin-right: 10px;
+    font-family: 'Space Mono', monospace;
+    text-align: right;
+    outline: none;
+    padding-right: 10px;
+}
+
+.custom-tip-input::placeholder {
+    color: hsl(186, 14%, 43%);
+    text-align: center;
+    position: relative;
+    left: 5px;
+    font-family: 'Space Mono', monospace;
+}
+
+.clearfix:after {
+    /*伪元素是行内元素 正常浏览器清除浮动方法*/
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.people {
+    margin-top: 40px;
+}
+
+.people-title {
+    margin-bottom: 5px;
+}
+
+.right-box {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 420px;
+    height: 420px;
+    background-color: hsl(183, 100%, 15%);
+    border-radius: 15px;
+    padding-top: 60px;
+    padding-left: 35px;
+}
+
+.tip-amount,
+.total {
+    position: relative;
+}
+
+.total {
+    margin-top: 60px;
+}
+
+.tip-amount-title,
+.total-title {
+    color: #fff;
+}
+
+.tip-amount-title span,
+.total-title span {
+    font-size: 12px;
+    color: hsl(185, 41%, 84%);
+}
+
+.tip-amount-value,
+.total-value {
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    color: #fff;
+    font-size: 38px;
+    font-weight: 600;
+    color: hsl(172, 67%, 45%);
+}
+
+.reset {
+    position: absolute;
+    left: 45px;
+    bottom: 30px;
+    width: 330px;
+    height: 50px;
+    background-color: hsl(172, 67%, 45%);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.2;
+}
+
+.reset:hover {
+    background-color: hsl(185, 41%, 84%);
+    opacity: 1;
+}
+
+.reset-active {
+    background-color: hsl(172, 67%, 45%);
+    opacity: 1;
+}
+
+.custom-tip-active {
+    outline: 1px solid hsl(172, 67%, 45%);
+    background-color: hsl(189, 41%, 97%);
+}

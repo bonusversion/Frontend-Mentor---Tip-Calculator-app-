@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <h1>SPLI<br>TTER</h1>
+    <div class="container">
+        <div class="bill">
+            <h2 class="bill-title font14">Bill</h2>
+            <div class="bill-box"><img src="images/icon-dollar.svg" alt=""><input class="bill-input" type="text" placeholder="0"></div>
+        </div>
+
+        <div class="tip clearfix">
+            <h2 class="tip-title font14">Select Tip %</h2>
+            <div class="tip-box five">5%</div>
+            <div class="tip-box ten">10%</div>
+            <div class="tip-box">15%</div>
+            <div class="tip-box">25%</div>
+            <div class="tip-box">50%</div>
+            <input class="custom-tip-input" type="text" placeholder="Custom" id="custom-tip">
+        </div>
+        <div class="people">
+            <h2 class="people-title font14">Number of People</h2><span class="alert hidden">Can't be zero</span>
+            <div class="people-box"><img src="images/icon-person.svg" alt=""><input class="people-input" type="text" placeholder="0"></div>
+        </div>
+        <div class="right-box">
+            <div class="tip-amount">
+                <h2 class="tip-amount-title font14">Tip Amount <br> <span>/ person</span></h2>
+                <div class="tip-amount-value">$0.00</div>
+            </div>
+            <div class="total">
+                <h2 class="total-title font14">Total <br> <span>/ person</span></h2>
+                <div class="total-value">$0.00</div>
+            </div>
+            <div class="reset">RESET</div>
+        </div>
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

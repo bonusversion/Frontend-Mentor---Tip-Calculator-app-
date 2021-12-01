@@ -30,14 +30,18 @@ function onClickTipButton() {
     .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
 }
 
+function resetCustomButton() {
+  customTip.classList.remove("custom-tip-active");
+  customTip.placeholder = "Custom";
+  customTip.value = "";
+}
+
 document.querySelectorAll(".tip-box").forEach((tipBox) =>
   tipBox.addEventListener("click", function (event) {
-    onClickTipButton();
-
-    customTip.classList.remove("custom-tip-active");
-    customTip.placeholder = "Custom";
-    customTip.value = "";
     event.target.classList.add("tip-box-click");
+    onClickTipButton();
+    resetCustomButton();
+
     tipRatio = parseInt(event.target.textContent) / 100;
     calcTips();
   })

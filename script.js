@@ -8,16 +8,19 @@ const totalValue = document.querySelector(".total-value");
 const peopleNum = document.querySelector(".people-input");
 const customTip = document.querySelector("#custom-tip");
 const resetBt = document.querySelector(".reset");
+let tipRatio = 0;
 
-const calcTips = function (tipRatio) {
-  let currentTipRatio = parseInt(tipRatio) / 100;
-  if (inputBill.value && peopleNum.value) {
-    const tip =
-      (Number(inputBill.value) * currentTipRatio) / Number(peopleNum.value);
-    const total = tip + inputBill.value / Number(peopleNum.value);
-    tipValue.textContent = tip.toFixed(2);
-    totalValue.textContent = total.toFixed(2);
+const calcTips = function () {
+  if (!inputBill.value || !peopleNum.value) {
+    return;
   }
+
+  const average = Number(inputBill.value) / Number(peopleNum.value);
+  const tip = average * tipRatio;
+  const total = average + tip;
+
+  tipValue.textContent = tip.toFixed(2);
+  totalValue.textContent = total.toFixed(2);
 };
 
 document.querySelectorAll(".tip-box").forEach((tipBox) =>
@@ -30,12 +33,8 @@ document.querySelectorAll(".tip-box").forEach((tipBox) =>
     customTip.placeholder = "Custom";
     customTip.value = "";
     event.target.classList.add("tip-box-click");
-    if (!Number(peopleNum.value)) {
-      document.querySelector(".alert").classList.remove("hidden");
-    } else {
-      document.querySelector(".alert").classList.add("hidden");
-      calcTips(event.target.textContent);
-    }
+    tipRatio = parseInt(event.target.textContent) / 100;
+    calcTips();
   })
 );
 
@@ -46,12 +45,8 @@ customTip.addEventListener("click", function (event) {
     .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
   customTip.classList.add("custom-tip-active");
   customTip.placeholder = "";
-  if (!Number(peopleNum.value)) {
-    document.querySelector(".alert").classList.remove("hidden");
-  } else {
-    document.querySelector(".alert").classList.add("hidden");
-    calcTips(event.target.value);
-  }
+  tipRatio = Number(event.target.value) / 100;
+  calcTips();
 });
 
 function isInputInt(text) {
@@ -71,6 +66,7 @@ peopleNum.addEventListener("input", function () {
   }
 
   resetBt.classList.add("reset-active");
+  calcTips();
 });
 
 inputBill.addEventListener("input", function () {
@@ -80,6 +76,7 @@ inputBill.addEventListener("input", function () {
   }
 
   resetBt.classList.add("reset-active");
+  calcTips();
 });
 
 resetBt.addEventListener("click", function () {

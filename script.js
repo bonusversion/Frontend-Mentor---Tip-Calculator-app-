@@ -36,6 +36,16 @@ function resetCustomButton() {
   customTip.value = "";
 }
 
+function isInputInt(text) {
+  const number = Number(text);
+  if (number.toString().length !== text.length) {
+    alert("please input int number");
+    return false;
+  }
+
+  return true;
+}
+
 document.querySelectorAll(".tip-box").forEach((tipBox) =>
   tipBox.addEventListener("click", function (event) {
     event.target.classList.add("tip-box-click");
@@ -52,19 +62,17 @@ customTip.addEventListener("click", function (event) {
 
   customTip.classList.add("custom-tip-active");
   customTip.placeholder = "";
-  tipRatio = Number(event.target.value) / 100;
-  calcTips();
 });
 
-function isInputInt(text) {
-  const number = Number(text);
-  if (number.toString().length !== text.length) {
-    alert("please input int number");
-    return false;
+customTip.addEventListener("input", function () {
+  if (!isInputInt(customTip.value)) {
+    customTip.value = "";
+    return;
   }
 
-  return true;
-}
+  tipRatio = Number(customTip.value) / 100;
+  calcTips();
+});
 
 peopleNum.addEventListener("input", function () {
   if (!isInputInt(peopleNum.value)) {

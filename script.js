@@ -23,12 +23,17 @@ const calcTips = function () {
   totalValue.textContent = total.toFixed(2);
 };
 
+function onClickTipButton() {
+  resetBt.classList.add("reset-active");
+  document
+    .querySelectorAll(".tip-box")
+    .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
+}
+
 document.querySelectorAll(".tip-box").forEach((tipBox) =>
   tipBox.addEventListener("click", function (event) {
-    resetBt.classList.add("reset-active");
-    document
-      .querySelectorAll(".tip-box")
-      .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
+    onClickTipButton();
+
     customTip.classList.remove("custom-tip-active");
     customTip.placeholder = "Custom";
     customTip.value = "";
@@ -39,10 +44,8 @@ document.querySelectorAll(".tip-box").forEach((tipBox) =>
 );
 
 customTip.addEventListener("click", function (event) {
-  resetBt.classList.add("reset-active");
-  document
-    .querySelectorAll(".tip-box")
-    .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
+  onClickTipButton();
+
   customTip.classList.add("custom-tip-active");
   customTip.placeholder = "";
   tipRatio = Number(event.target.value) / 100;

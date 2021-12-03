@@ -1,70 +1,97 @@
-'use strict';
+"use strict";
 
 // Element
-
 const inputBill = document.querySelector(".bill-input");
+const inputPeople = document.querySelector(".people-input");
+const customTip = document.getElementById("custom-tip");
 const tipValue = document.querySelector(".tip-amount-value");
 const totalValue = document.querySelector(".total-value");
-const peopleNum = document.querySelector(".people-input");
-const customTip = document.querySelector("#custom-tip");
-const resetBt = document.querySelector('.reset');
+const resetBt = document.querySelector(".reset");
+const alert = document.querySelector(".alert");
 
+let tipRatio = 0;
+let peopleNum = 0;
+let billValue = 0;
 
-const calcTips = function(tipRatio) {
+const resetResult = function () {
+  tipValue.textContent = 0;
+  totalValue.textContent = 0;
+};
+
+const resetCustomTip = function () {
+  customTip.classList.remove("custom-tip-active");
+  customTip.placeholder = "Custom";
+  customTip.value = "";
+};
+
+const calcResult = function () {
+  if (!billValue) {
+    resetResult();
+    return;
+  }
+  if (!(peopleNum % 1 === 0) || peopleNum === 0) {
+    alert.classList.remove("hidden");
+    resetResult();
+    console.log(tipValue.value);
+  } else {
+    alert.classList.add("hidden");
     let currentTipRatio = parseInt(tipRatio) / 100;
-    if (!inputBill.value !== true && !peopleNum !== true) {
-        const tip = Number(inputBill.value) * currentTipRatio / Number(peopleNum.value)
-        const total = tip + inputBill.value / Number(peopleNum.value);
-        tipValue.textContent = tip.toFixed(2);
-        totalValue.textContent = total.toFixed(2);
-    }
-}
+    if (billValue && inputPeople) {
+      const avgCost = billValue / peopleNum;
+      const tip = avgCost * currentTipRatio;
+      const total = avgCost + tip;
 
-document.querySelectorAll('.tip-box').forEach((tipBox => tipBox.addEventListener('click', function(event) {
-    resetBt.classList.add('reset-active')
-    document.querySelectorAll('.tip-box').forEach(tipBox => tipBox.classList.remove('tip-box-click'));
-    customTip.classList.remove('custom-tip-active');
-    customTip.placeholder = 'Custom';
-    customTip.value = '';
-    event.target.classList.add('tip-box-click');
-    if (!Number(peopleNum.value)) {
-        document.querySelector('.alert').classList.remove('hidden');
-    } else {
-        document.querySelector('.alert').classList.add('hidden');
-        calcTips(event.target.textContent);
+      tipValue.textContent = tip.toFixed(2);
+      totalValue.textContent = total.toFixed(2);
     }
-})));
+  }
+};
 
+document.querySelectorAll(".tip-box").forEach((tipBox) =>
+  tipBox.addEventListener("click", function (event) {
+    resetBt.classList.add("reset-active");
+    document
+      .querySelectorAll(".tip-box")
+      .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
+    resetCustomTip();
+    event.target.classList.add("tip-box-click");
+    tipRatio = event.target.textContent;
+    calcResult();
+  })
+);
 
-customTip.addEventListener('click', function(event) {
-    resetBt.classList.add('reset-active')
-    document.querySelectorAll('.tip-box').forEach(tipBox => tipBox.classList.remove('tip-box-click'));
-    customTip.classList.add('custom-tip-active');
-    customTip.placeholder = '';
-    if (!Number(peopleNum.value)) {
-        document.querySelector('.alert').classList.remove('hidden');
-    } else {
-        document.querySelector('.alert').classList.add('hidden');
-        calcTips(event.target.value);
-    }
+customTip.addEventListener("input", function (event) {
+  resetBt.classList.add("reset-active");
+  document
+    .querySelectorAll(".tip-box")
+    .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
+  customTip.classList.add("custom-tip-active");
+  customTip.placeholder = "";
+  tipRatio = event.target.value;
+  calcResult();
 });
 
+inputPeople.addEventListener("input", function (event) {
+  resetBt.classList.add("reset-active");
+  peopleNum = Number(event.target.value);
+  calcResult();
+});
 
-peopleNum.addEventListener('input', function() {
-    resetBt.classList.add('reset-active');
-})
+inputBill.addEventListener("input", function (event) {
+  resetBt.classList.add("reset-active");
+  billValue = Number(event.target.value);
+  console.log(billValue);
+  calcResult();
+});
 
-inputBill.addEventListener('input', function() {
-    resetBt.classList.add('reset-active');
-})
-
-resetBt.addEventListener('click', function() {
-    document.querySelectorAll('.tip-box').forEach(tipBox => tipBox.classList.remove('tip-box-click'));
-    customTip.placeholder = 'Custom';
-    customTip.value = '';
-    inputBill.value = '';
-    peopleNum.value = '';
-    tipValue.textContent = 0;
-    totalValue.textContent = 0;
-    resetBt.classList.remove('reset-active');
-})
+resetBt.addEventListener("click", function () {
+  document
+    .querySelectorAll(".tip-box")
+    .forEach((tipBox) => tipBox.classList.remove("tip-box-click"));
+  resetCustomTip();
+  inputBill.value = "";
+  inputPeople.value = "";
+  resetResult();
+  resetBt.classList.remove("reset-active");
+  alert.classList.add("hidden");
+});
